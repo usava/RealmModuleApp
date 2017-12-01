@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.widget.EditText;
 
 import com.example.cowboy.realmmoduleapp.R;
+import com.example.cowboy.realmmoduleapp.app.RealmModuleApp;
 import com.example.cowboy.realmmoduleapp.common.IBaseView;
 import com.example.cowboy.realmmoduleapp.common.IPresentContract;
+import com.example.cowboy.realmmoduleapp.main.main_di.MainModule;
 import com.example.cowboy.realmmoduleapp.model.Person;
 
 import javax.inject.Inject;
@@ -20,6 +22,9 @@ public class MainActivity extends AppCompatActivity implements IBaseView.IMainVi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ((RealmModuleApp) getApplication()).getAppComponent().plus(new MainModule()).inject(this);
+
         presenter.init(this);
 
         Person p = new Person();

@@ -6,12 +6,13 @@ import com.example.cowboy.realmmoduleapp.list.ListPresenterImpl;
 import com.example.cowboy.realmmoduleapp.main.MainPresenterImpl;
 import com.example.cowboy.realmmoduleapp.realm.IRealmService;
 
+import dagger.Module;
 import dagger.Provides;
 
 /**
  * Created by Cowboy on 22.11.2017.
  */
-
+@Module
 public class ListModule {
 
     @Provides
