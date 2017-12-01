@@ -17,6 +17,7 @@ import dagger.Component;
 @Component(modules = {AppModule.class})
 
 public interface AppComponent {
+
     MainComponent plus(MainModule module);
     ListComponent plus(ListModule module);
     DetailComponent plus(DetailModule module);

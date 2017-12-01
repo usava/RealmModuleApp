@@ -2,6 +2,8 @@ package com.example.cowboy.realmmoduleapp.detail.detail_di;
 
 import android.app.Application;
 
+import com.example.cowboy.realmmoduleapp.common.IPresentContract;
+import com.example.cowboy.realmmoduleapp.detail.DetailPresenterImpl;
 import com.example.cowboy.realmmoduleapp.list.ListPresenterImpl;
 import com.example.cowboy.realmmoduleapp.realm.IRealmService;
 
@@ -16,7 +18,7 @@ public class DetailModule {
 
     @Provides
     @DetailScope
-    ListPresenterImpl provideDetailPresenter(Application application, IRealmService iRealmService){
-        return new ListPresenterImpl(application, iRealmService);
+    IPresentContract.IDetialPresenter provideDetailPresenter(Application application, IRealmService iRealmService){
+        return new DetailPresenterImpl(application, iRealmService);
     }
 }

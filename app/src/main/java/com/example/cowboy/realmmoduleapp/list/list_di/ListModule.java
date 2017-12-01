@@ -2,6 +2,7 @@ package com.example.cowboy.realmmoduleapp.list.list_di;
 
 import android.app.Application;
 
+import com.example.cowboy.realmmoduleapp.common.IPresentContract;
 import com.example.cowboy.realmmoduleapp.list.ListPresenterImpl;
 import com.example.cowboy.realmmoduleapp.main.MainPresenterImpl;
 import com.example.cowboy.realmmoduleapp.realm.IRealmService;
@@ -17,7 +18,7 @@ public class ListModule {
 
     @Provides
     @ListScope
-    ListPresenterImpl provideListPresenter(Application application, IRealmService iRealmService){
+    IPresentContract.IListPresenter provideListPresenter(Application application, IRealmService iRealmService){
         return new ListPresenterImpl(application, iRealmService);
     }
 }

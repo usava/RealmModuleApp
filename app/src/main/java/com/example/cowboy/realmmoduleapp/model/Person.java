@@ -1,6 +1,7 @@
 package com.example.cowboy.realmmoduleapp.model;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by Cowboy on 22.11.2017.
@@ -8,13 +9,16 @@ import io.realm.RealmObject;
 
 
 public class Person extends RealmObject{
-    public Long id = null;
 
+    @PrimaryKey
+    public long id;
+    public String name;
+    public String surname;
+    public String phone;
+    public String email;
+    public String skype;
 
-    public String name = null;
-    public String surname = null;
-    public String phone = null;
-    public String email = null;
+    public Person() {}
 
     public String getName() {
         return name;
@@ -63,21 +67,6 @@ public class Person extends RealmObject{
     public void setId(Long id) {
         this.id = id;
     }
-
-    public String skype = null;
-
-    public Person(String name, String surname, String phone, String email, String skype) {
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.skype = skype;
-        this.surname = surname;
-    }
-
-    public Person() {
-    }
-
-    ;
 
     @Override
     public String toString() {

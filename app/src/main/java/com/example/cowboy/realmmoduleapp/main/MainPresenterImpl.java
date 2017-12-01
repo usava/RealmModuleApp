@@ -8,6 +8,8 @@ import com.example.cowboy.realmmoduleapp.common.IPresentContract;
 import com.example.cowboy.realmmoduleapp.model.Person;
 import com.example.cowboy.realmmoduleapp.realm.IRealmService;
 
+import rx.Subscriber;
+
 /**
  * Created by Cowboy on 22.11.2017.
  */
@@ -29,6 +31,17 @@ public class MainPresenterImpl extends BasePresenter<IBaseView.IMainView> implem
     }
     @Override
     public void setData(Person person) {
+        realmService.addObject(person, Person.class).subscribe(
+                next->{
+                    if(next != null){
+                        view.onFollowList();
+                    }
+                },throwable ->{
+                    view.showError(throwable.getMessage());
+                }, ()->{
 
+                }
+
+        );
     }
 }

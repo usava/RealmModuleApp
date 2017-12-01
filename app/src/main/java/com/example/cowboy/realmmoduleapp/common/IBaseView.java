@@ -12,10 +12,11 @@ public interface IBaseView {
 
     void showProgress();
     void hideProgress();
-    void showError();
+    void showError(String s);
 
     interface IMainView extends IBaseView{
         void onSuccess(Person person);
+        void onFollowList();
     }
     interface IDetailView extends IBaseView{
         void showData(Person person);

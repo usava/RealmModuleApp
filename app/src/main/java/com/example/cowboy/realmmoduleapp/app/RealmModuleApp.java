@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.example.cowboy.realmmoduleapp.app.app_di.AppComponent;
 import com.example.cowboy.realmmoduleapp.app.app_di.AppModule;
+import com.example.cowboy.realmmoduleapp.app.app_di.DaggerAppComponent;
 
 
 import io.realm.Realm;

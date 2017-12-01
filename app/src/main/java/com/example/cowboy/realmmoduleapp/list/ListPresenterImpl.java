@@ -5,6 +5,7 @@ import android.app.Application;
 import com.example.cowboy.realmmoduleapp.common.BasePresenter;
 import com.example.cowboy.realmmoduleapp.common.IBaseView;
 import com.example.cowboy.realmmoduleapp.common.IPresentContract;
+import com.example.cowboy.realmmoduleapp.model.Person;
 import com.example.cowboy.realmmoduleapp.realm.IRealmService;
 
 /**
@@ -20,5 +21,27 @@ public class ListPresenterImpl extends BasePresenter<IBaseView.IListView> implem
     @Override
     public void getListData() {
 
+        realmService.getObjects(Person.class).subscribe(
+                next->{
+                    if(next != null){
+                       view.showRealmResult(next);
+                    }
+                },throwable ->{
+                    view.showError(throwable.getMessage());
+                }, ()->{
+
+                }
+
+        );
+    }
+
+    @Override
+    public void init(IBaseView.IListView view) {
+        super.init(view);
+    }
+
+    @Override
+    public void dismiss() {
+        super.dismiss();
     }
 }

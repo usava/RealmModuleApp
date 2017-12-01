@@ -19,7 +19,7 @@ public class MainModule {
 
     @Provides
     @MainScope
-    MainPresenterImpl provideMainPresenter(Application application, IRealmService iRealmService){
+    IPresentContract.IMainPresenter provideMainPresenter(Application application, IRealmService iRealmService){
         return new MainPresenterImpl(application, iRealmService);
     }
 }

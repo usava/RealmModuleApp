@@ -20,6 +20,6 @@ public interface IPresentContract {
     }
     interface IDetialPresenter<V extends IBaseView.IDetailView> extends IPresentContract{
         void init(V view);
-        void getData(Long id);
+        void getData(long id);
     }
 }
