@@ -5,6 +5,7 @@ import android.app.Application;
 import com.example.cowboy.realmmoduleapp.common.BasePresenter;
 import com.example.cowboy.realmmoduleapp.common.IBaseView;
 import com.example.cowboy.realmmoduleapp.common.IPresentContract;
+import com.example.cowboy.realmmoduleapp.model.Person;
 import com.example.cowboy.realmmoduleapp.realm.IRealmService;
 
 /**
@@ -20,7 +21,17 @@ public class DetailPresenterImpl extends BasePresenter<IBaseView.IDetailView> im
 
     @Override
     public void getData(long id) {
+        realmService.getObject(Person.class, id).subscribe(
+            next->{
+                if(next != null){
+                    view.showData(next);
+                }
+            },throwable ->{
+                view.showError(throwable.getMessage());
+            }, ()->{
 
+            }
+        );
     }
 
     @Override

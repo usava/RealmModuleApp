@@ -2,6 +2,8 @@ package com.example.cowboy.realmmoduleapp.detail;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.cowboy.realmmoduleapp.R;
 import com.example.cowboy.realmmoduleapp.app.RealmModuleApp;
@@ -18,6 +20,12 @@ public class DetailActivity extends AppCompatActivity implements IBaseView.IDeta
     @Inject
     IPresentContract.IDetialPresenter presenter;
 
+    private EditText etName;
+    private EditText etSurname;
+    private EditText etPhone;
+    private EditText etEmail;
+    private EditText etSkype;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +33,18 @@ public class DetailActivity extends AppCompatActivity implements IBaseView.IDeta
 
         ((RealmModuleApp) getApplication()).getAppComponent().plus(new DetailModule()).inject(this);
         presenter.init(this);
-        presenter.getData(0);
+
+        etName = (EditText) findViewById(R.id.et_detailed_name);
+        etSurname = (EditText) findViewById(R.id.et_detailed_surname);
+        etPhone = (EditText) findViewById(R.id.et_detailed_phone);
+        etEmail = (EditText) findViewById(R.id.et_detailed_email);
+        etSkype = (EditText) findViewById(R.id.et_detailed_skype);
+
+        long itemId = this.getIntent().getLongExtra("id", 0);
+
+        presenter.getData(itemId);
+
+        Toast.makeText(this, ""+itemId, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -45,6 +64,10 @@ public class DetailActivity extends AppCompatActivity implements IBaseView.IDeta
 
     @Override
     public void showData(Person person) {
-
+        etName.setText(person.getName().toString());
+        etSurname.setText(person.getSurname().toString());
+        etPhone.setText(person.getPhone().toString());
+        etEmail.setText(person.getEmail().toString());
+        etSkype.setText(person.getSkype().toString());
     }
 }

@@ -26,7 +26,7 @@ public class RecordViewHolder extends RecyclerView.ViewHolder implements View.On
 
     private Context context;
     public Person person;
-    public ItemClickListener<Person> mListener = null;
+    public ItemClickListener<Person> mListener;
 
     public RecordViewHolder(Context context, View itemView) {
         super(itemView);
@@ -51,8 +51,8 @@ public class RecordViewHolder extends RecyclerView.ViewHolder implements View.On
     }
 
     public void bindPerson(Person person){
-        this.person = person;
         if(person != null){
+            this.person = person;
             mName.setText(person.getName());
             mSurname.setText(person.getSurname());
             mPhone.setText(person.getPhone());
@@ -63,13 +63,11 @@ public class RecordViewHolder extends RecyclerView.ViewHolder implements View.On
 
     @Override
     public void onClick(View v) {
-        //Toast.makeText(context, "v id: "+v.getId(), Toast.LENGTH_SHORT).show();
         if(v.getId() == R.id.ib_delete){
             this.mListener.deleteItem(person.getId());
         }else{
             this.mListener.openDetailed(person.getId());
         }
-
     }
 
     public void setmListener(ItemClickListener<Person> icl){

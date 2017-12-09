@@ -23,7 +23,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordViewHolder> {
 
     private Context context;
     private ArrayList<Person> values  = new ArrayList<>();
-//    private ItemClickListener<Person> mListener;
+    private ItemClickListener<Person> mListener;
 
     public RecordAdapter(Context context) {
         this.context = context;
@@ -38,7 +38,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordViewHolder> {
     @Override
     public void onBindViewHolder(RecordViewHolder holder, int position) {
         holder.bindPerson(values.get(position));
-//        holder.setmListener(this.mListener);
+        holder.setmListener(this.mListener);
     }
 
     @Override
@@ -46,9 +46,9 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordViewHolder> {
         return values.size();
     }
 
-//    public void setData(ItemClickListener<Person> icl) {
-//        mListener = icl;
-//    }
+    public void setData(ItemClickListener<Person> icl) {
+        mListener = icl;
+    }
 
    public void addNewItems(ArrayList<Person> items){
        if(items.size() == 0){

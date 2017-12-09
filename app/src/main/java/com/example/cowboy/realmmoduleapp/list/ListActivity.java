@@ -47,7 +47,7 @@ public class ListActivity extends AppCompatActivity implements IBaseView.IListVi
         rv.setLayoutManager(llm);
         adapter = new RecordAdapter(this);
         rv.setAdapter(adapter);
-//        adapter.setData(this);
+        adapter.setData(this);
         presenter.getListData();
     }
 

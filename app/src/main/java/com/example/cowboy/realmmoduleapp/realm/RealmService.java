@@ -112,4 +112,20 @@ public class RealmService implements IRealmService{
                         .map(type -> mRealm.where(clazz).findAll().last())
                 );
     }
+
+    @Override
+    public <T extends RealmObject> Observable<T> getObject(Class<T> clazz, long id) {
+        return Observable.just(clazz)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnError(Throwable::printStackTrace)
+                .flatMap(t -> Observable.just(t)
+                        .doOnSubscribe(mRealm::beginTransaction)
+                        .doOnUnsubscribe(() -> {
+                            mRealm.commitTransaction();
+                        })
+                        .doOnError(Throwable::printStackTrace)
+                        .map(type -> mRealm.where(clazz).equalTo("id", id).findFirst())
+                );
+    }
 }
